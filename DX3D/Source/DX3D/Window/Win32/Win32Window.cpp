@@ -33,7 +33,7 @@ DX3D::Win32Window::Win32Window(): Base() {
         wc.cbSize = sizeof(WNDCLASSEX);
         // tutorial says to use
         // ww.lpszClassName = L"DX3DWindow", but CLion says otherwise
-        wc.lpszClassName = reinterpret_cast<LPCSTR>(L"DX3DWindow");
+        wc.lpszClassName = "DX3DWindow";
         wc.lpfnWndProc = &WindowProcedure;
         return RegisterClassEx(&wc);
     };
@@ -47,9 +47,19 @@ DX3D::Win32Window::Win32Window(): Base() {
     RECT rc{ 0, 0, 1280, 720 };
     AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW | WS_CAPTION | WS_SYSMENU, FALSE);
 
-    m_handle = CreateWindowEx(NULL, MAKEINTATOM(windowClassId), reinterpret_cast<LPCSTR>(L"DX3D Window | Game Engine"),
-        WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT,
-        rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, nullptr, nullptr);
+    m_handle = CreateWindowEx(
+        0,
+        MAKEINTATOM(windowClassId),
+        "DX3D Window",
+        WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        rc.right - rc.left,
+        rc.bottom - rc.top,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr);
 
     // Validate return values
     if (!m_handle)

@@ -3,9 +3,7 @@
 //
 
 #include "DX3D/Game/Game.h"
-
 #include <memory>
-
 #include "DX3D/Window/Win32Window.h"
 
 DX3D::Game::Game() {
