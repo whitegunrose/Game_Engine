@@ -23,3 +23,10 @@ target_include_directories(game_engine PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/DX3D/Include
         ${CMAKE_CURRENT_SOURCE_DIR}/DX3D/Source
 )
+
+# Link Direct3D 11 libraries
+target_link_libraries(game_engine PRIVATE
+        d3d11
+        # dxgi            # Optional: needed for swap chains, adapter enumeration, etc.
+        # d3dcompiler     # Optional: needed if compiling HLSL shaders at runtime
+)
