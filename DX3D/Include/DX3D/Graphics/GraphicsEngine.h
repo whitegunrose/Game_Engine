@@ -3,6 +3,8 @@
 //
 
 #pragma once
+
+#include "DX3D/Core/Core.h"
 #include "DX3D/Core/Base.h"
 
 namespace DX3D {
@@ -11,6 +13,8 @@ namespace DX3D {
         public:
             GraphicsEngine();
             ~GraphicsEngine() override;
+        private:
+            std::unique_ptr<RenderSystem> m_renderSystem{};
     };
 } // DX3D
 

@@ -16,6 +16,8 @@ namespace DX3D {
 
             virtual void Run() final;
         private:
+            // Game engine is deallocated before window
+            std::unique_ptr<GraphicsEngine> m_graphicsEngine{};
             std::unique_ptr<Win32Window> m_display{};
             bool m_running{true};
     };
