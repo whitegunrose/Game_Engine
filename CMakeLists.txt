@@ -16,7 +16,9 @@ add_executable(game_engine Game/main.cpp
         DX3D/Source/DX3D/Graphics/GraphicsEngine.cpp
         DX3D/Include/DX3D/Graphics/GraphicsEngine.h
         DX3D/Source/DX3D/Graphics/RenderSystem.cpp
-        DX3D/Source/DX3D/Graphics/RenderSystem.h)
+        DX3D/Source/DX3D/Graphics/RenderSystem.h
+        DX3D/Source/DX3D/Core/Logger.cpp
+        DX3D/Include/DX3D/Core/Logger.h)
 
 # Add DX3D/Include and DX3D/Source to the compiler's include search path
 target_include_directories(game_engine PRIVATE
