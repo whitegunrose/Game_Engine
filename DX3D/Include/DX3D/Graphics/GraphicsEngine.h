@@ -11,7 +11,7 @@ namespace DX3D {
     class GraphicsEngine final: public Base {
         // final Keyword prevents further inheritance by other classes
         public:
-            GraphicsEngine();
+            explicit GraphicsEngine(const GraphicsEngineDesc& desc);
             ~GraphicsEngine() override;
         private:
             std::unique_ptr<RenderSystem> m_renderSystem{};

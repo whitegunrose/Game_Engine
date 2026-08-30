@@ -3,12 +3,15 @@
 //
 
 #pragma once
+#include "DX3D/Core/Common.h"
 
 namespace DX3D {
     class Base {
         public:
-            Base();             // Constructor
+            explicit Base(const BaseDesc& desc);             // Constructor
             virtual ~Base();    // Destructor
+            // CLion suggested I add `[[nodiscard]]` to this function.
+            [[nodiscard]] virtual Logger& getLogger() const noexcept final { return m_logger; }
 
         protected:
 
@@ -23,9 +26,12 @@ namespace DX3D {
              *
              */
 
-            Base(const Base&) = delete;;
+            Base(const Base&) = delete;
             Base(Base&&) = delete;
             Base& operator=(const Base&) = delete;
             Base& operator=(Base&&) = delete;
+
+        protected:
+            Logger& m_logger;
     };
 }

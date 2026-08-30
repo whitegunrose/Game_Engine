@@ -26,7 +26,7 @@ static LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
     return 0;
 };
 
-DX3D::Win32Window::Win32Window(): Base() {
+DX3D::Win32Window::Win32Window(const WindowDesc& desc): Base(desc.base) {
 
     auto registerWindowClass = []() {
         WNDCLASSEX wc{};
@@ -41,9 +41,10 @@ DX3D::Win32Window::Win32Window(): Base() {
     static const auto windowClassId = std::invoke(registerWindowClass);
 
     // Validate return values
-    if (!windowClassId)
+    if (!windowClassId) {
+        getLogger().log(Logger::LogLevel::Error, "Failed to register window class (RegisterClassEx)");
         throw std::runtime_error("Failed to register window class (RegisterClassEx)");
-
+    }
     RECT rc{ 0, 0, 1280, 720 };
     AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW | WS_CAPTION | WS_SYSMENU, FALSE);
 
@@ -62,9 +63,10 @@ DX3D::Win32Window::Win32Window(): Base() {
         nullptr);
 
     // Validate return values
-    if (!m_handle)
+    if (!m_handle) {
+        getLogger().log(Logger::LogLevel::Error, "Failed to create window (CreateWindowEx)");
         throw std::runtime_error("Failed to create window (CreateWindowEx)");
-
+    }
     ShowWindow(static_cast<HWND>(m_handle), SW_SHOW);
 }
 
